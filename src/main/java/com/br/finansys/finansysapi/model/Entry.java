@@ -1,11 +1,18 @@
 package com.br.finansys.finansysapi.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Entry {
 
     @Id

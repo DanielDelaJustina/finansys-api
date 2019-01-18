@@ -3,11 +3,9 @@ package com.br.finansys.finansysapi.resource;
 import com.br.finansys.finansysapi.model.Entry;
 import com.br.finansys.finansysapi.repository.Entries;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -19,7 +17,20 @@ public class EntriesResource {
     private Entries entries;
 
     @GetMapping
-    public List<Entry> listAll() {
-        return entries.findAll();
+    public Iterable<Entry> listAll() {
+
+        return entries.findAllByOrderById();
+    }
+
+    @PostMapping
+    public Entry add(@RequestBody @Valid Entry entry){
+
+        return entries.save(entry);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable("id") Long id){
+
+        entries.deleteById(id);
     }
 }

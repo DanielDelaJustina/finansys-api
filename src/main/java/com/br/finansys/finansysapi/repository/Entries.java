@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface Entries extends JpaRepository<Entry,Long> {
 
+    Iterable<Entry> findAllByOrderById();
 }
